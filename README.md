@@ -1,0 +1,190 @@
+# Towards Ghost-free Shadow Removal 
+
+This repo contains the code and results of the AAAI 2020 paper:
+
+<i><b> [Towards Ghost-free Shadow Removal via <br> Dual Hierarchical Aggregation Network and Shadow Matting GAN ](https://arxiv.org/abs/1911.08718)</b></i><br>
+[Xiaodong Cun](http://vinthony.github.io), [Chi-Man Pun<sup>*</sup>](http://www.cis.umac.mo/~cmpun/), Cheng Shi <br>
+[University of Macau](http://um.edu.mo/)
+
+[Syn. Datasets](#Resources) | [Models](#Resources) | [Results](#Resources) | [Paper](https://arxiv.org/abs/1911.08718) | [Supp.](https://github.com/vinthony/academicpages.github.io/blob/master/images/ghost-free-shadow-removal-supp.pdf) | Poster | [🔥Online Demo!(Google CoLab)](https://colab.research.google.com/drive/1cJ_dsBUXFaFtjoZB9gDYeahjmysnvnTq)
+
+<img width='100%' src='https://user-images.githubusercontent.com/4397546/69003615-582b2180-0940-11ea-9faa-2f2ae6b1d5ba.png'/>
+
+<i>We plot a result of our model with the input shown in the yellow square. From two zoomed regions, our method removes the shadow and reduces the ghost successfully.</i>
+
+## Known Issues
+[#4](https://github.com/vinthony/ghost-free-shadow-removal/issues/4) inconsistency between the code and Figure.2, Thanks [@naoto0804](https://github.com/naoto0804)
+
+## **Introduction**
+<p style="text-align:justify"><i>Shadow removal is an essential task for scene understanding. Many studies consider only matching the image contents, which often causes two types of ghosts: color in-consistencies in shadow regions or artifacts on shadow boundaries. In this paper, we try to tackle these issues in two aspects. On the one hand, to carefully learn the border artifacts-free image, we propose a novel network structure named the Dual Hierarchically Aggregation Network(DHAN). It contains a series of growth dilated convolutions as the backbone without any down-samplings, and we hierarchically aggregate multi-context features for attention and prediction respectively. On the other hand, we argue that training on a limited dataset restricts the textural understanding of the network, which leads to the shadow region color in-consistencies. Currently, the largest dataset contains 2k+ shadow/shadow-free images in pairs. However, it has only 0.1k+ unique scenes since many samples share exactly the same background with different shadow positions. Thus, we design a Shadow Matting Generative Adversarial Network~(SMGAN) to synthesize realistic shadow mattings from a given shadow mask and shadow-free image. With the help of novel masks or scenes, we enhance the current datasets using synthesized shadow images. Experiments show that our DHAN can erase the shadows and produce high-quality ghost-free images. After training on the synthesized and real datasets, our network outperforms other state-of-the-art methods by a large margin. </i></p>
+
+## Sample Comparsion
+![fig1857_5](https://user-images.githubusercontent.com/4397546/69911139-dbc13400-1451-11ea-8c1b-3b587b4f8727.png)
+
+<i>Comparison on the shadow removal datasets, The ﬁrst two samples are from ISTD dataset while the bottom two samples are from SRD dataset. In (d), the top two samples are from ST-CGAN and the bottom two samples are from DeShadowNet.</i>
+
+
+## **Resources**
+
+- Pre-trained Models: <b>[SRD](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EVjCDVbv4AhAsco1IqCTCnoBMVJt-f6pIFU603G0EEZ5CA?e=DDvg2v) | [SRD+](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EXoaeGxsGMRMsnCs25_4Z4wB2XKlSY7q-LlF5d3kFvU2eg?e=a3VrLy) | 
+[ISTD](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EdGF_2nSCZdMgbL0cz4aCt4BvEtAZ0xNsy81rloxJy5m7g?e=orI9i1) | 
+[ISTD+](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EYfdWFETlmZNqFn2gaz4juEBy6E-Rgyz7JoyabEv4iJQkw?e=poA4Wa) </b>
+
+- Results on Shadow Removal: <b>
+[SRD](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EeBoBAhnCMpClEW5Wb-MY88BgzTQYf7-hDCnNrfmX_zevg?e=xu8AEh) | 
+[SRD+](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EYLodBImcw1AlfQZsh71HuYB_TalzP0uTBEtS-9atEdc_Q?e=DODEKk) | 
+[ISTD](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EQgDUC1d_BpFg7SCRDCAlTkBRDeKeATnbwYvVMCdkpWRBw?e=kxyrAE) | 
+[ISTD+](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/ERvQFx8d8AxLmrafMi609nMBo7JnsV4a4s63FV_NP89_eA) </b>
+
+- Results on Shadow Detection: <b> 
+[SBU](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EYByu0IMTQFHl__lK7GA1DAB0crwq0i49SIVLcdQWmnq_w?e=XO5OHg) | 
+[SBU+](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EQMCyGNUo3xJg8fInF7LWQAB0g9HFZHRBuBoxlzEL5CNUg?e=ENfsZV) </b>
+
+- Training on ISTD dataset and generating shadow using USR dataset: <b> 
+[Syn. Shadow](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EW8-rjV5MX5BtoNSoDuzQg8B2lk4QHZS9jZzDDPfrEZVfg?e=DxPVfR) |
+[Pre-trained Model (re-trained)](https://drive.google.com/file/d/1Mlq4rQAj9jGiomrbQzjKuyHiVI8tgIhw/view?usp=sharing) </b>
+
+- Extracted Shadow Mask in SRD dataset:<b>
+[SRD Mask](https://uofmacau-my.sharepoint.com/:u:/g/personal/yb87432_umac_mo/EZ8CiIhNADlAkA4Fhim_QzgBfDeI7qdUrt6wv2EVxZSc2w?e=hobVMf)
+</b>
+
+
+## **Other Resources**
+
+- [ISTD dataset](https://github.com/DeepInsight-PCALab/ST-CGAN)
+- [USR: Unpaired Shadow Removal dataset](https://drive.google.com/open?id=1PPAX0W4eyfn1cUrb2aBefnbrmhB1htoJ)
+- SRD Dataset (please email the [authors](http://vision.sia.cn/our%20team/JiandongTian/JiandongTian.html) to get assess).
+
+
+## **Setup**
+Creating the conda environments following [here](https://github.com/ceciliavision/perceptual-reflection-removal#conda-environment).
+
+## **Demo**
+
+#### 1. Local ipynb demo
+1. download the pre-trained model from above. **SRD+** is recommended.
+2. download pretrained-vgg19 from [MatConvNet](http://www.vlfeat.org/matconvnet/pretrained/#downloading-the-pre-trained-models).
+3. Uncompress pre-trained models into 'Models/' as shown in the folders.
+4. Starting a [jupyter](https://jupyter.org/) server and run the demo code following the instructions in `demo.ipynb`
+
+It has been tested both in MacOS 10.15 and Ubuntu 18.04 LTS. Both CPU and GPU are supported (But running on CPU is quite slow).
+
+#### 2. Online google colab demo
+
+an online **shadow removal** demo is hosted in Google CoLab by [this url](https://colab.research.google.com/drive/1cJ_dsBUXFaFtjoZB9gDYeahjmysnvnTq)
+
+an online **shadow synthesis** demo is hosted in Google CoLab by [this url](https://colab.research.google.com/drive/1WGtsxKxogxgusFJhLJMjM8ZpMsVYjuDg#scrollTo=SxF4uQHmEiv0)
+
+#### 3. Demo from command line (Thanks [@aliericcantona](https://github.com/aliericcantona))
+
+```
+python demo.py --model PATH_TO_PRETRAINED_MODEL --vgg_19_path PATH_TO_VGG19 --input_dir SAMPLES_DIR --result_dir RESULTS_DIR
+```
+
+## **Training**
+The data folders should be:
+```
+ISTD_DATA_ROOT
+    * train
+        - train_A # shadow image
+        - train_B # shadow mask
+        - train_C # shadowfree image
+        - shadow_free # USR shadowfree images
+        - synC # our Syn. shadow
+    * test
+        - test_A # shadow image
+        - test_B # shadow mask
+        - test_C # shadowfree image
+
+SRD_DATA_ROOT
+    * train
+        - train_A # renaming the original `shadow` folder in `SRD`.
+        - train_B # the extracted shadow mask by ourself.
+        - train_C # renaming the original `shadow_free` folder in `SRD`.
+        - shadow_free # USR shadowfree images
+        - synC # our Syn. shadow
+    * test
+        - train_A # renaming the original `shadow` folder in `SRD`.
+        - train_B # the extracted shadow mask by ourself.
+        - train_C # renaming the original `shadow_free` folder in `SRD`.
+
+```
+### 1. Generating Synthesized Shadow
+Downloading the `ISTD` from the source, download the USR dataset and unzip it into unzip it into  `$YOUR_DATA_ROOT/ISTD_dataset/train/`. Train the GAN by:
+```
+python train_ss.py \
+--task YOUR_TASK_NAME \
+--data_dir $YOUR_DATA_ROOT/$ISTD_DATASET_ROOT/train/ \
+--use_gpu 0 # <0 for CPU \
+--is_training 1 # 0 for testing \
+```
+### 2. Training on the ISTD dataset
+Downloading the `ISTD` from the source, download our synthesized dataset and unzip it into  `$YOUR_DATA_ROOT/ISTD_dataset/train/`. Train the network by:
+```
+python train_sr.py \
+--task YOUR_TASK_NAME \
+--data_dir $YOUR_DATA_ROOT/$ISTD_DATASET_ROOT/train/ \
+--use_gpu 1 # <0 for cpu \
+--is_training 1 # 0 for testing \
+--use_da 0.5 # the percentage of synthesized dataset
+```
+### 3. Training on SRD dataset 
+Download and unzip the `SRD` dataset from the source. Reorganizing the dataset as described above. 
+```
+python train_sr.py \
+--task YOUR_TASK_NAME \
+--data_dir $YOUR_DATA_ROOT/$SRD_DATASET_ROOT/train/ \
+--use_gpu 1 # <0 for cpu \
+--is_training 1 # 0 for testing \
+--use_da 0.5 # the percentage of synthesized dataset
+```
+
+## **Test**
+```
+# ISTD DATASET
+python train_sr.py \
+--task YOUR_TASK_NAME # path to the pre-trained model [logs/YOUR_TASK_NAME] \
+--data_dir $YOUR_DATA_ROOT/$ISTD_DATASET_ROOT/test/ \
+--use_gpu 1 # <0 for cpu \
+--is_training 0 # 0 for testing \
+
+# SRD DATASET
+python train_sr.py \
+--task YOUR_TASK_NAME # path to the pre-trained model [logs/YOUR_TASK_NAME] \
+--data_dir $YOUR_DATA_ROOT/$SRD_DATASET_ROOT/test/ \
+--use_gpu 1 # <0 for cpu \
+--is_training 0 # 0 for testing \
+
+```
+
+## **Acknowledgements**
+The author would like to thanks Nan Chen for her helpful discussion.
+
+Part of the code is based upon [FastImageProcessing](https://github.com/CQFIO/FastImageProcessing) and [Perception Reflection Removal](https://github.com/ceciliavision/perceptual-reflection-removal)
+
+## **Citation**
+
+If you find our work useful in your research, please consider citing:
+
+```
+@misc{cun2019ghostfree,
+    title={Towards Ghost-free Shadow Removal via Dual Hierarchical Aggregation Network and Shadow Matting GAN},
+    author={Xiaodong Cun and Chi-Man Pun and Cheng Shi},
+    year={2019},
+    eprint={1911.08718},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+```
+
+## **Contact**
+Please contact me if there is any question (Xiaodong Cun yb87432@um.edu.mo)
+
+## **Related Works**
+
+Zhang, Xuaner, Ren Ng, and Qifeng Chen. "[Single Image Reflection Separation with Perceptual Losses](https://arxiv.org/abs/1806.05376)." Proceedings of the CVPR. (2018).
+
+
+Hu, Xiaowei, et al. "[Mask-ShadowGAN: Learning to Remove Shadows from Unpaired Data](https://arxiv.org/abs/1903.10683)." Proceedings of the ICCV (2019).
+
+[![HitCount](http://hits.dwyl.com/vinthony/ghost-free-shadow-removal.svg)](http://hits.dwyl.com/vinthony/ghost-free-shadow-removal)
